@@ -7,14 +7,14 @@
     <string name="action_settings">Settings</string>
 
     <!--NAVIGATION DRAWER-->
-    <string name="title_section_home">Inicio</string>
+    <string name="title_section_home">Inici</string>
     <string name="title_section_menu">Menú</string>
-    <string name="title_section_rsvp">Asistencia</string>
+    <string name="title_section_rsvp">Asistència</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!--HOME-->
-    <string name="home_button_get_invitation">¡Quiero recibir la invitación en papel!</string>
-    <string name="home_button_get_invitation_toast">Nosotros nos encargamos. Te la enviaremos lo antes posible :)</string>
+    <string name="home_button_get_invitation">Vull rebre la invitació en paper!</string>
+    <string name="home_button_get_invitation_toast">Nosaltres ens encarreguem. Te la enviarem de seguida :)</string>
 
 </resources>
