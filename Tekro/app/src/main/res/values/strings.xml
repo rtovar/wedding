@@ -15,6 +15,6 @@
 
     <!--HOME-->
     <string name="home_button_get_invitation">¡Quiero recibir la invitación en papel!</string>
-    <string name="home_button_get_invitation_toast">Nosotros nos encargamos. Te la enviaremos lo antes posible :)</string>
+    <string name="home_textview_sent_invitation">¡Oído cocina!\nTe enviaremos tú invitación en papel lo antes posible.</string>
 
 </resources>
