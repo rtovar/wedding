@@ -16,5 +16,8 @@
     <!--HOME-->
     <string name="home_button_get_invitation">¡Quiero recibir la invitación en papel!</string>
     <string name="home_textview_sent_invitation">¡Oído cocina!\nTe enviaremos tú invitación en papel lo antes posible.</string>
+    <string name="home_dialog_choose_lang_message">¿En qué idioma quieres recibir la invitación?</string>
+    <string name="home_dialog_choose_lang_es">Castellano</string>
+    <string name="home_dialog_choose_lang_cat">Catalán</string>
 
 </resources>

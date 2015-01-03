@@ -16,5 +16,8 @@
     <!--HOME-->
     <string name="home_button_get_invitation">Vull rebre la invitació en paper!</string>
     <string name="home_textview_sent_invitation">Dit i fet!\nT'enviarem la teva invitació en paper de seguida.</string>
+    <string name="home_dialog_choose_lang_message">En quin idioma vols rebre la invitació?</string>
+    <string name="home_dialog_choose_lang_es">Castellà</string>
+    <string name="home_dialog_choose_lang_cat">Català</string>
 
 </resources>
