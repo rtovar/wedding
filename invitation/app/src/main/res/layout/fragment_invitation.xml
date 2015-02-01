@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_color">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buttonPaperInvitation">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/invitacion"/>
+
+        <Button
+            android:id="@+id/buttonInvitation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"/>
+
+        </RelativeLayout>
+
+    <Button
+        android:id="@+id/buttonPaperInvitation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/theme_purple"
+        android:text="@string/button_paper_invitation_enabled"
+        android:textColor="@color/theme_color"/>
+
+</RelativeLayout>
