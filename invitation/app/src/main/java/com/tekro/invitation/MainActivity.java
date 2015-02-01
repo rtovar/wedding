@@ -1,17 +1,27 @@
 package com.tekro.invitation;
 
-import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.tekro.invitation.adapter.TabPagerAdapter;
+import com.tekro.invitation.model.TRGuest;
+import com.tekro.invitation.model.TRInvitation;
+import com.tekro.invitation.network.ContentProvider;
+
+import java.util.ArrayList;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class MainActivity extends FragmentActivity implements android.support.v7.app.ActionBar.TabListener {
@@ -37,13 +47,25 @@ public class MainActivity extends FragmentActivity implements android.support.v7
         PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pagerTabStrip);
         pagerTabStrip.setDrawFullUnderline(true);
         pagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.theme_pink));
-        pagerTabStrip.setTextColor(R.color.theme_pink);
+        pagerTabStrip.setTextColor(getResources().getColor(R.color.theme_pink));
+
+        for (int i = 0; i < pagerTabStrip.getChildCount(); ++i) {
+            View nextChild = pagerTabStrip.getChildAt(i);
+            if (nextChild instanceof TextView) {
+                Typeface font = Typeface.createFromAsset(getAssets(), "HelveticaNeueLight.ttf");
+                TextView textViewToConvert = (TextView) nextChild;
+                textViewToConvert.setTypeface(font);
+            }
+        }
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         mAdapter = new TabPagerAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(mAdapter);
-    }
 
+        if (ContentProvider.getInstance().getCurrentInvitation() == null) {
+            pushLoadingActivity();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -67,6 +89,7 @@ public class MainActivity extends FragmentActivity implements android.support.v7
         return super.onOptionsItemSelected(item);
     }
 
+
     //--------------------------
     // TabListener Methods
     //--------------------------
@@ -86,6 +109,7 @@ public class MainActivity extends FragmentActivity implements android.support.v7
 
     }
 
+
     //--------------------------
     // Navigation Methods
     //--------------------------
@@ -95,4 +119,8 @@ public class MainActivity extends FragmentActivity implements android.support.v7
         MainActivity.this.startActivity(myIntent);
     }
 
+    private void pushLoadingActivity() {
+        Intent myIntent = new Intent(MainActivity.this, LoadingActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
 }

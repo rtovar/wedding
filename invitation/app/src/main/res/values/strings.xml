@@ -10,4 +10,13 @@
     <string name="button_paper_invitation_enabled">Quiero recibir mi invitación en papel</string>
     <string name="button_paper_invitation_disabled">bla</string>
 
+    <string name="dialog_lang_message">¿En qué idioma quieres recibir la invitación?</string>
+    <string name="dialog_lang_cast">Castellano</string>
+    <string name="dialog_lang_cat">Català</string>
+
+    <string name="ok">OK</string>
+
+    <string name="error_request_invitation_message">error_request_invitation_message</string>
+    <string name="error_request_paper_invitation">error_request_paper_invitation</string>
+
 </resources>
