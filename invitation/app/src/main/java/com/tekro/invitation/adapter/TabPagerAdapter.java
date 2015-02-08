@@ -6,7 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.tekro.invitation.R;
-import com.tekro.invitation.fragment.InvitationFragment;
+import com.tekro.invitation.ui.fragment.GuestsFragment;
+import com.tekro.invitation.ui.fragment.InvitationFragment;
 
 /**
  * Created by Rocío on 26/01/2015.
@@ -20,7 +21,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
     private Context mContext;
     private int[] tabsTitles = { R.string.title_section_invitation, R.string.title_section_guests, R.string.title_section_emplacement };
     private InvitationFragment invitationFragment;
-    private Fragment guestsFragment;
+    private GuestsFragment guestsFragment;
     private Fragment infoFragment;
 
 
@@ -77,7 +78,9 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
 
     private Fragment getGuestsFragment() {
         if (guestsFragment == null) {
-            guestsFragment = new InvitationFragment();
+            guestsFragment = new GuestsFragment();
+        } else {
+            guestsFragment.reloadData();
         }
 
         return guestsFragment;

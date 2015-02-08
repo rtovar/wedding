@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/theme_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:layout_toLeftOf="@+id/rsvpButton">
+
+    <TextView
+        android:id="@+id/firstNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Noemí"
+        android:textSize="@dimen/font_size_xl"
+        android:textColor="@color/theme_purple"/>
+
+    <TextView
+        android:id="@+id/lastNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Diaz Asensio"
+        android:textSize="@dimen/font_size_xs"
+        android:textColor="@color/theme_pink"/>
+
+    <Button
+        android:id="@+id/menuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_button"
+        android:textColor="@color/theme_pink"
+        android:gravity="left|center_vertical"
+        android:alpha="0.4"
+        android:background="@android:color/transparent"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/rsvpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_rsvp"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:background="@color/theme_purple"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
+

@@ -1,23 +1,19 @@
-package com.tekro.invitation.fragment;
+package com.tekro.invitation.ui.fragment;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.tekro.invitation.MainActivity;
+import com.tekro.invitation.ui.activity.MainActivity;
 import com.tekro.invitation.R;
 import com.tekro.invitation.model.TRInvitation;
 import com.tekro.invitation.network.ContentProvider;
@@ -77,7 +73,7 @@ public class InvitationFragment extends Fragment implements View.OnClickListener
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "HelveticaNeueLight.ttf");
         paperInvitationButton.setTypeface(font);
 
-        if (ContentProvider.getInstance().getCurrentInvitation() != null && ContentProvider.getInstance().getCurrentInvitation().sendInvitation) {
+        if (ContentProvider.getInstance().currentInvitation != null && ContentProvider.getInstance().currentInvitation.sendInvitation) {
             paperInvitationButton.setEnabled(false);
             paperInvitationButton.setBackgroundColor(Color.TRANSPARENT);
             paperInvitationButton.setTextColor(getActivity().getResources().getColor(R.color.theme_purple));

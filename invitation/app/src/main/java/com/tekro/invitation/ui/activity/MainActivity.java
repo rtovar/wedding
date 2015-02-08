@@ -1,4 +1,4 @@
-package com.tekro.invitation;
+package com.tekro.invitation.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -7,24 +7,19 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.tekro.invitation.R;
 import com.tekro.invitation.adapter.TabPagerAdapter;
-import com.tekro.invitation.model.TRGuest;
-import com.tekro.invitation.model.TRInvitation;
 import com.tekro.invitation.network.ContentProvider;
-
-import java.util.ArrayList;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import com.tekro.invitation.ui.fragment.GuestsFragment;
 
 
-public class MainActivity extends FragmentActivity implements android.support.v7.app.ActionBar.TabListener {
+public class MainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener {
 
     //--------------------------
     // Attributes
@@ -61,8 +56,9 @@ public class MainActivity extends FragmentActivity implements android.support.v7
         viewPager = (ViewPager) findViewById(R.id.pager);
         mAdapter = new TabPagerAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(mAdapter);
+        viewPager.setOnPageChangeListener(this);
 
-        if (ContentProvider.getInstance().getCurrentInvitation() == null) {
+        if (ContentProvider.getInstance().currentInvitation == null) {
             pushLoadingActivity();
         }
     }
@@ -91,26 +87,6 @@ public class MainActivity extends FragmentActivity implements android.support.v7
 
 
     //--------------------------
-    // TabListener Methods
-    //--------------------------
-
-    @Override
-    public void onTabSelected(android.support.v7.app.ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabUnselected(android.support.v7.app.ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabReselected(android.support.v7.app.ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-
-    //--------------------------
     // Navigation Methods
     //--------------------------
 
@@ -122,5 +98,27 @@ public class MainActivity extends FragmentActivity implements android.support.v7
     private void pushLoadingActivity() {
         Intent myIntent = new Intent(MainActivity.this, LoadingActivity.class);
         MainActivity.this.startActivity(myIntent);
+    }
+
+
+    //------------------------------
+    // OnPageChangeListener Methods
+    //------------------------------
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        if (position == 1) {
+            ((GuestsFragment)mAdapter.getItem(position)).reloadData();
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

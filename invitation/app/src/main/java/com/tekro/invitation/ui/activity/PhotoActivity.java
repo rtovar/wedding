@@ -1,4 +1,4 @@
-package com.tekro.invitation;
+package com.tekro.invitation.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 
+import com.tekro.invitation.R;
 import com.tekro.invitation.adapter.TabPagerAdapter;
 
 import uk.co.senab.photoview.PhotoViewAttacher;

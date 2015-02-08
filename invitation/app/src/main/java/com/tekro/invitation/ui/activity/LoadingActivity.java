@@ -1,4 +1,4 @@
-package com.tekro.invitation;
+package com.tekro.invitation.ui.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 
+import com.tekro.invitation.R;
 import com.tekro.invitation.adapter.TabPagerAdapter;
 import com.tekro.invitation.model.TRInvitation;
 import com.tekro.invitation.network.ContentProvider;
@@ -43,6 +44,7 @@ public class LoadingActivity extends Activity {
         return new Callback<TRInvitation>() {
             @Override
             public void success(TRInvitation invitation, Response response) {
+                ContentProvider.getInstance().currentInvitation = invitation;
                 finish();
             }
 

@@ -22,7 +22,7 @@ public class ContentProvider {
 
     private static ContentProvider instance;
     private APIService apiService;
-    private TRInvitation currentInvitation;
+    public TRInvitation currentInvitation;
 
     private ContentProvider() {
 
@@ -56,8 +56,8 @@ public class ContentProvider {
     // Data Methods
     //--------------------------
 
-    public TRInvitation getCurrentInvitation() {
-        return currentInvitation;
+    public ArrayList<TRGuest> getGuests() {
+        return currentInvitation != null ? currentInvitation.guests : null;
     }
 
     public void askForPaperInvitationWithLanguage(String language, final Callback<TRInvitation> callback) {

@@ -19,4 +19,11 @@
     <string name="error_request_invitation_message">error_request_invitation_message</string>
     <string name="error_request_paper_invitation">error_request_paper_invitation</string>
 
+    <string name="menu_button">Selecciona tu menú</string>
+    <string name="menu_meat">Plato de Carne</string>
+    <string name="menu_fish">Plato de Pescado</string>
+    <string name="menu_veggie">Plato Vegano</string>
+    <string name="menu_other">Otros (indícanos si tienes alguna preferencia diferente o alguna alergia a tener en cuenta)</string>
+    <string name="menu_other_placeholder">Otras preferencias...</string>
+
 </resources>
