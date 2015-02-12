@@ -79,6 +79,12 @@ public class ContentProvider {
         });
     }
 
+    public void updateGuest(TRGuest guest) {
+        currentInvitation.guests.remove(Integer.parseInt(guest.id) - 1);
+        currentInvitation.guests.add(Integer.parseInt(guest.id)-1, guest);
+        //TODO: send it to the server
+    }
+
 
     //--------------------------
     // Network Requests

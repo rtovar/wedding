@@ -100,6 +100,11 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         MainActivity.this.startActivity(myIntent);
     }
 
+    public void pushMenuActivity() {
+        Intent myIntent = new Intent(MainActivity.this, MenuActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
+
 
     //------------------------------
     // OnPageChangeListener Methods

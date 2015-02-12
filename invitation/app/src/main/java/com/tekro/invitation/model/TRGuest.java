@@ -10,4 +10,5 @@ public class TRGuest {
     public boolean rsvp;
     public String mail;
     public String menu;
+    public String menuOther;
 }

@@ -1,6 +1,7 @@
 package com.tekro.invitation.ui.view;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.tekro.invitation.R;
 import com.tekro.invitation.model.TRGuest;
+import com.tekro.invitation.ui.activity.MainActivity;
 
 /**
  * Created by Pau on 8/2/2015.
@@ -62,10 +64,11 @@ public class GuestView extends View implements View.OnClickListener {
     @Override
     public void onClick(View clickedview) {
         if (clickedview.equals(rsvpButton)) {
-            rsvpButton.setSelected(!rsvpButton.isSelected());
+            guest.rsvp = !rsvpButton.isSelected();
+            setupRSVPButton();
             //TODO: send invitation modification
         } else if (clickedview.equals(menuButton)) {
-            //TODO: show menu activity
+            ((MainActivity)getContext()).pushMenuActivity();
         }
     }
 
@@ -78,10 +81,24 @@ public class GuestView extends View implements View.OnClickListener {
         if (guest != null) {
             firstNameTextView.setText(guest.firstName);
             lastNameTextView.setText(guest.lastName);
+            setupMenuButton();
+            setupRSVPButton();
+        }
+    }
+
+    private void setupMenuButton() {
+        if (guest.menu.equals("other")) {
+            menuButton.setText(guest.menuOther);
+        } else {
             int menuResID = getResources().getIdentifier("menu_" + guest.menu, "string", getContext().getPackageName());
             String menuText = menuResID == 0 ? "" : (String) getResources().getText(menuResID);
             menuButton.setText(menuText);
-            rsvpButton.setSelected(guest.rsvp);
         }
+    }
+
+    private void setupRSVPButton() {
+        rsvpButton.setSelected(guest.rsvp);
+        int rsvpButtonColor = guest.rsvp ? R.color.theme_pink : R.color.theme_pink_transparent;
+        rsvpButton.setColorFilter(rsvpButtonColor, PorterDuff.Mode.SRC);
     }
 }

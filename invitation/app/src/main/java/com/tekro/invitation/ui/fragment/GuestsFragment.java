@@ -43,6 +43,18 @@ public class GuestsFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.clear();
+        adapter.addAll(ContentProvider.getInstance().getGuests());
+        adapter.notifyDataSetChanged();
+    }
+
+    //--------------------------
+    // Data Methods
+    //--------------------------
+
     public void reloadData() {
         if (adapter.getCount() == 0 && ContentProvider.getInstance().getGuests() != null) {
             adapter.addAll(ContentProvider.getInstance().getGuests());

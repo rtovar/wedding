@@ -55,6 +55,10 @@ public class GuestsAdapter extends BaseAdapter implements View.OnClickListener {
         }
     }
 
+    public void clear() {
+        items = null;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
