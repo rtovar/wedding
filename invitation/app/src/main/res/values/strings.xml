@@ -27,5 +27,11 @@
     <string name="menu_other">Otros (indícanos si tienes alguna preferencia diferente o alguna alergia a tener en cuenta)</string>
     <string name="menu_other_placeholder">Otras preferencias...</string>
     <string name="menu_save">Guardar cambios</string>
+    <string name="qr_desc">Ahora solo tienes que escanear el código QR que te hemos entregado.</string>
+    <string name="qr_button">Escanear</string>
+    <string name="qr_popup_title">Ningún escaner encontrado</string>
+    <string name="qr_popup_message">¿Descargar una aplicación para escanear códigos QR?</string>
+    <string name="qr_popup_yes_button">Sí</string>
+    <string name="qr_popup_no_button">No</string>
 
 </resources>
