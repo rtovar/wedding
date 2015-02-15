@@ -19,7 +19,7 @@ import com.tekro.invitation.network.ContentProvider;
 import com.tekro.invitation.ui.fragment.GuestsFragment;
 
 
-public class MainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener, ContentProvider.OnUpdateFinishedListener {
 
     //--------------------------
     // Attributes
@@ -39,6 +39,8 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
         setContentView(R.layout.activity_main);
 
         // Initilization
+        ContentProvider.getInstance().onUpdateFinishedListener = this;
+        ContentProvider.context = this;
         PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pagerTabStrip);
         pagerTabStrip.setDrawFullUnderline(true);
         pagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.theme_pink));
@@ -125,5 +127,16 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+
+    //----------------------------------
+    // OnUpdateFinishedListener Methods
+    //----------------------------------
+
+
+    @Override
+    public void onUpdateFinished() {
+        ((GuestsFragment)mAdapter.getItem(1)).reloadData();
     }
 }

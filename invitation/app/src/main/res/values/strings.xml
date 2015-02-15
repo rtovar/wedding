@@ -8,11 +8,12 @@
     <string name="title_section_guests">Invitados</string>
     <string name="title_section_emplacement">Información</string>
     <string name="button_paper_invitation_enabled">Quiero recibir mi invitación en papel</string>
-    <string name="button_paper_invitation_disabled">bla</string>
+    <string name="button_paper_invitation_disabled">Descuida, te la enviaremos lo antes posible :)</string>
 
     <string name="dialog_lang_message">¿En qué idioma quieres recibir la invitación?</string>
     <string name="dialog_lang_cast">Castellano</string>
     <string name="dialog_lang_cat">Català</string>
+    <string name="dialog_menu_message">Ups! No hemos podido guardar tus preferencias debido a un error, por favor, vuelve a intentarlo más tarde.</string>
 
     <string name="ok">OK</string>
 
@@ -33,5 +34,8 @@
     <string name="qr_popup_message">¿Descargar una aplicación para escanear códigos QR?</string>
     <string name="qr_popup_yes_button">Sí</string>
     <string name="qr_popup_no_button">No</string>
+    <string name="info_date">27 de junio de 2015</string>
+    <string name="info_time">19:00</string>
+    <string name="info_place">El Jardí de les Palmeres</string>
 
 </resources>

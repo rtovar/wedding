@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerTabStrip;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.tekro.invitation.R;
 import com.tekro.invitation.adapter.TabPagerAdapter;
@@ -33,6 +35,7 @@ public class LoadingActivity extends Activity implements View.OnClickListener {
     //--------------------------
 
     private Button buttonScan;
+    private TextView textViewDescription;
     private ProgressBar progressBar;
     private LinearLayout contentLayout;
 
@@ -46,10 +49,19 @@ public class LoadingActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-        buttonScan = (Button)findViewById(R.id.buttonScan);
-        buttonScan.setOnClickListener(this);
+        Typeface font = Typeface.createFromAsset(getAssets(), "HelveticaNeueLight.ttf");
+
+        textViewDescription = (TextView)findViewById(R.id.textViewDescription);
+        textViewDescription.setTypeface(font);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         contentLayout = (LinearLayout)findViewById(R.id.contentLayout);
+        buttonScan = (Button)findViewById(R.id.buttonScan);
+        buttonScan.setOnClickListener(this);
+        buttonScan.setTypeface(font);
+
+        if (ContentProvider.getInstance().getCurrentInvitationID() != null) {
+            requestInvitationWithID(ContentProvider.getInstance().getCurrentInvitationID());
+        }
     }
 
 
@@ -57,11 +69,17 @@ public class LoadingActivity extends Activity implements View.OnClickListener {
     // Navigation Methods
     //--------------------------
 
+    private void requestInvitationWithID(String invitationID) {
+        contentLayout.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        ContentProvider.getInstance().requestCurrentInvitation(invitationID, callbackRequestInvitation(this));
+    }
+
     private Callback<TRInvitation> callbackRequestInvitation(final Activity activity) {
         return new Callback<TRInvitation>() {
             @Override
             public void success(TRInvitation invitation, Response response) {
-                ContentProvider.getInstance().currentInvitation = invitation;
+                ContentProvider.getInstance().setCurrentInvitation(invitation);
                 finish();
             }
 
@@ -122,9 +140,7 @@ public class LoadingActivity extends Activity implements View.OnClickListener {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 String invitationID = intent.getStringExtra("SCAN_RESULT"); // This will contain your scan result
-                contentLayout.setVisibility(View.GONE);
-                progressBar.setVisibility(View.VISIBLE);
-                ContentProvider.getInstance().requestCurrentInvitation(invitationID, callbackRequestInvitation(this));
+                requestInvitationWithID(invitationID);
             }
         }
     }

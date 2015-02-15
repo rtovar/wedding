@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.tekro.invitation.R;
 import com.tekro.invitation.model.TRGuest;
+import com.tekro.invitation.network.ContentProvider;
 import com.tekro.invitation.ui.activity.MainActivity;
 
 /**
@@ -34,11 +35,9 @@ public class GuestView extends View implements View.OnClickListener {
     // Constructor
     //--------------------------
 
-    public GuestView(Context context, TRGuest guest) {
+    public GuestView(Context context, View contentView) {
         super(context);
 
-        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-        View contentView = layoutInflater.inflate(R.layout.view_guest_item, null);
         rsvpButton = (ImageButton) contentView.findViewById(R.id.rsvpButton);
         menuButton = (Button) contentView.findViewById(R.id.menuButton);
         firstNameTextView = (TextView) contentView.findViewById(R.id.firstNameTextView);
@@ -47,11 +46,14 @@ public class GuestView extends View implements View.OnClickListener {
         rsvpButton.setOnClickListener(this);
         menuButton.setOnClickListener(this);
 
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "HelveticaNeueLight.ttf");
-        firstNameTextView.setTypeface(font);
+        Typeface fontLight = Typeface.createFromAsset(getContext().getAssets(), "HelveticaNeueLight.ttf");
+        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "HelveticaNeue.ttf");
+        firstNameTextView.setTypeface(fontLight);
         lastNameTextView.setTypeface(font);
         menuButton.setTypeface(font);
+    }
 
+    public void setGuest(TRGuest guest){
         this.guest = guest;
         setupGuest();
     }
@@ -66,9 +68,10 @@ public class GuestView extends View implements View.OnClickListener {
         if (clickedview.equals(rsvpButton)) {
             guest.rsvp = !rsvpButton.isSelected();
             setupRSVPButton();
-            //TODO: send invitation modification
+            ContentProvider.getInstance().updateGuest(guest);
         } else if (clickedview.equals(menuButton)) {
-            ((MainActivity)getContext()).pushMenuActivity();
+            ContentProvider.getInstance().currentGuest = guest;
+            ((MainActivity) getContext()).pushMenuActivity();
         }
     }
 
@@ -87,18 +90,20 @@ public class GuestView extends View implements View.OnClickListener {
     }
 
     private void setupMenuButton() {
-        if (guest.menu.equals("other")) {
+        if (guest.menu == null) {
+            menuButton.setText(R.string.menu_button);
+        } else if (guest.menu.equals("other")) {
             menuButton.setText(guest.menuOther);
         } else {
-            int menuResID = getResources().getIdentifier("menu_" + guest.menu, "string", getContext().getPackageName());
-            String menuText = menuResID == 0 ? "" : (String) getResources().getText(menuResID);
+            int menuResID = getContext().getResources().getIdentifier("menu_" + guest.menu, "string", getContext().getPackageName());
+            String menuText = menuResID == 0 ? "" : (String) getContext().getResources().getText(menuResID);
             menuButton.setText(menuText);
         }
     }
 
     private void setupRSVPButton() {
         rsvpButton.setSelected(guest.rsvp);
-        int rsvpButtonColor = guest.rsvp ? R.color.theme_pink : R.color.theme_pink_transparent;
-        rsvpButton.setColorFilter(rsvpButtonColor, PorterDuff.Mode.SRC);
+        int rsvpButtonColor = getContext().getResources().getColor( guest.rsvp ? R.color.theme_purple : R.color.theme_purple_transparent);
+        rsvpButton.setColorFilter(rsvpButtonColor, PorterDuff.Mode.SRC_IN);
     }
 }

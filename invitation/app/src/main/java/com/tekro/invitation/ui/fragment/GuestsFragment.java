@@ -46,9 +46,7 @@ public class GuestsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        adapter.clear();
-        adapter.addAll(ContentProvider.getInstance().getGuests());
-        adapter.notifyDataSetChanged();
+        reloadData();
     }
 
     //--------------------------
@@ -56,9 +54,14 @@ public class GuestsFragment extends Fragment {
     //--------------------------
 
     public void reloadData() {
-        if (adapter.getCount() == 0 && ContentProvider.getInstance().getGuests() != null) {
+        if (ContentProvider.getInstance().getGuests() != null) {
+
+            if (adapter != null && adapter.getCount() > 0) {
+                adapter.clear();
+            }
+
             adapter.addAll(ContentProvider.getInstance().getGuests());
+            adapter.notifyDataSetChanged();
         }
-        adapter.notifyDataSetChanged();
     }
 }

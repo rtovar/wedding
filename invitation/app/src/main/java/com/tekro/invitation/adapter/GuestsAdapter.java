@@ -1,6 +1,7 @@
 package com.tekro.invitation.adapter;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.tekro.invitation.R;
 import com.tekro.invitation.model.TRGuest;
+import com.tekro.invitation.ui.activity.MainActivity;
 import com.tekro.invitation.ui.view.GuestView;
 
 import java.util.ArrayList;
@@ -60,7 +62,7 @@ public class GuestsAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    /*public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
 
         if (view == null) {
@@ -84,23 +86,60 @@ public class GuestsAdapter extends BaseAdapter implements View.OnClickListener {
                 TRGuest guest = (TRGuest) getItem(position);
                 firstNameTextView.setText(guest.firstName);
                 lastNameTextView.setText(guest.lastName);
-                int menuResID = context.getResources().getIdentifier("menu_" + guest.menu, "string", context.getPackageName());
-                String menuText = menuResID == 0 ? "" : (String) context.getResources().getText(menuResID);
-                menuButton.setText(menuText);
-                rsvpButton.setSelected(guest.rsvp);
+                setupMenuButton(menuButton, guest);
+                setupRSVPButton(rsvpButton, guest);
             }
         }
 
         return view;
+    }*/
+
+
+
+
+
+    public View getView(int position, View convertView, ViewGroup parent) {
+        GuestView holder = null;
+        if (convertView == null) {
+
+            LayoutInflater layoutInflater = LayoutInflater.from(context);
+            convertView = layoutInflater.inflate(R.layout.view_guest_item, null);
+            holder = new GuestView(context, convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (GuestView)convertView.getTag();
+        }
+
+        holder.setGuest(items.get(position));
+
+        return convertView;
     }
+
+
+
 
 
     @Override
     public void onClick(View clickedview) {
         if (clickedview instanceof Button) {
-            //TODO: show menu activity
+            ((MainActivity)context).pushMenuActivity();
         } else if (clickedview instanceof ImageButton) {
-            clickedview.setSelected(!clickedview.isSelected());
         }
+    }
+
+    private void setupMenuButton(Button menuButton, TRGuest guest) {
+        if (guest.menu.equals("other")) {
+            menuButton.setText(guest.menuOther);
+        } else {
+            int menuResID = context.getResources().getIdentifier("menu_" + guest.menu, "string", context.getPackageName());
+            String menuText = menuResID == 0 ? "" : (String) context.getResources().getText(menuResID);
+            menuButton.setText(menuText);
+        }
+    }
+
+    private void setupRSVPButton(ImageButton rsvpButton, TRGuest guest) {
+        rsvpButton.setSelected(guest.rsvp);
+        int rsvpButtonColor = guest.rsvp ? R.color.theme_pink : R.color.theme_pink_transparent;
+        rsvpButton.setColorFilter(rsvpButtonColor, PorterDuff.Mode.SRC);
     }
 }

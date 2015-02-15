@@ -38,7 +38,7 @@
             android:background="@color/theme_purple"
             android:text="@string/button_paper_invitation_enabled"
             android:textColor="@color/theme_color"
-            android:textSize="10sp"/>
+            android:textSize="14sp"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
