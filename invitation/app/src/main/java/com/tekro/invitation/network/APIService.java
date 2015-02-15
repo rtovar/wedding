@@ -1,5 +1,6 @@
 package com.tekro.invitation.network;
 
+import com.tekro.invitation.model.TRGuest;
 import com.tekro.invitation.model.TRInvitation;
 
 import java.util.ArrayList;
@@ -21,5 +22,8 @@ public interface APIService {
 
     @POST("/invite")
     public void publishInvitation(@Body TRInvitation invitation, Callback<TRInvitation> callback);
+
+    @POST("/invite/{id}/{guest_id}")
+    public void updateGuestWithID(@Path("id") String id, @Path("guest_id") String guestID, @Body TRGuest guest, Callback<TRInvitation> callback);
 
 }

@@ -39,9 +39,14 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         findViews();
+        setListeners();
         setupGuest();
     }
 
+    @Override
+    public void onBackPressed() {
+        finishWithResult();
+    }
 
     //--------------------------
     // User Interface Methods
@@ -58,8 +63,12 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     }
 
     private void setupGuest() {
-        int menuResID = getResources().getIdentifier("menu_" + guest.menu, "string", getPackageName());
-        String menuText = menuResID == 0 ? "" : (String) getResources().getText(menuResID);
+        guest = ContentProvider.getInstance().currentGuest;
+        String menuText = null;
+        if (guest.menu != null) {
+            int menuResID = getResources().getIdentifier("menu_" + guest.menu, "string", getPackageName());
+            menuText = menuResID == 0 ? "" : (String) getResources().getText(menuResID);
+        }
 
         setupButtonWithMenu(menuText, buttonMeat);
         setupButtonWithMenu(menuText, buttonFish);
@@ -71,7 +80,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     }
 
     private void setupButtonWithMenu(String menuText, Button button) {
-        button.setSelected(menuText.equals(button.getText()));
+        button.setSelected(menuText != null && menuText.equals(button.getText()));
         button.setTextColor(getResources().getColor(button.isSelected() ? R.color.theme_pink : R.color.theme_pink_transparent));
     }
 
@@ -79,6 +88,8 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         if (buttonOther.isSelected()) {
             editTextOther.setEnabled(true);
             editTextOther.setText(guest.menuOther != null ? guest.menuOther : "");
+        } else {
+            editTextOther.setEnabled(false);
         }
     }
 

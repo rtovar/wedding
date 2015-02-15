@@ -1,7 +1,13 @@
 package com.tekro.invitation.network;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.tekro.invitation.R;
+import com.tekro.invitation.helpers.InterfaceHelper;
 import com.tekro.invitation.model.TRGuest;
 import com.tekro.invitation.model.TRInvitation;
 
@@ -19,10 +25,15 @@ import retrofit.converter.GsonConverter;
 public class ContentProvider {
 
     private static String SERVER = "http://mostrolabs.com:8090";
+    private static String MY_PREFS_NAME = "TEKRO_WEDDING";
 
     private static ContentProvider instance;
     private APIService apiService;
+    private String currentInvitationID;
     public TRInvitation currentInvitation;
+    public TRGuest currentGuest;
+    public static Context context;
+    public OnUpdateFinishedListener onUpdateFinishedListener;
 
     private ContentProvider() {
 
@@ -80,9 +91,23 @@ public class ContentProvider {
     }
 
     public void updateGuest(TRGuest guest) {
-        currentInvitation.guests.remove(Integer.parseInt(guest.id) - 1);
-        currentInvitation.guests.add(Integer.parseInt(guest.id)-1, guest);
-        //TODO: send it to the server
+        apiService.updateGuestWithID(currentInvitationID, guest.id, guest, callbackPublishInvitation());
+    }
+
+    public void setCurrentInvitation(TRInvitation invitation) {
+        this.currentInvitation = invitation;
+        this.currentInvitationID = invitation.id;
+        SharedPreferences.Editor editor =  context.getSharedPreferences(MY_PREFS_NAME, 0).edit();
+        editor.putString("invitationID", invitation.id);
+        editor.commit();
+    }
+
+    public String getCurrentInvitationID() {
+        if (currentInvitationID == null) {
+            SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, 0);
+            currentInvitationID = prefs.getString("invitationID", null);
+        }
+        return currentInvitationID;
     }
 
 
@@ -105,36 +130,33 @@ public class ContentProvider {
         });
     }
 
-    public void publishDummie() {
-        TRInvitation invitation = new TRInvitation();
-        TRGuest guest = new TRGuest();
-        guest.firstName = "John";
-        guest.lastName = "Doe";
-        guest.id = "1";
-        guest.mail = "john@doe.com";
-        guest.menu = "meat";
-        guest.rsvp = true;
-        ArrayList<TRGuest> guests = new ArrayList<>();
-        guests.add(guest);
-        invitation.guests = guests;
-        invitation.sendInvitation = true;
-        invitation.invitationLanguage = "cat";
-
-        apiService.publishInvitation(invitation, callbackPublishInvitation());
-    }
-
     private Callback<TRInvitation> callbackPublishInvitation() {
         return new Callback<TRInvitation>() {
             @Override
             public void success(TRInvitation invitation, Response response) {
                 currentInvitation = invitation;
+                onUpdateFinished();
             }
 
             @Override
             public void failure(RetrofitError error) {
-                //TODO
-                int i=0;
+                onUpdateFinished();
+                new AlertDialog.Builder(context)
+                    .setMessage(R.string.dialog_menu_message)
+                    .setPositiveButton(R.string.ok, null)
+                    .create()
+                    .show();
             }
         };
+    }
+
+    private void onUpdateFinished() {
+        if (onUpdateFinishedListener != null) {
+            onUpdateFinishedListener.onUpdateFinished();
+        }
+    }
+
+    public interface OnUpdateFinishedListener {
+        public void onUpdateFinished();
     }
 }
