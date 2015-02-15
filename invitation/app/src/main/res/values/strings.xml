@@ -34,8 +34,11 @@
     <string name="qr_popup_message">¿Descargar una aplicación para escanear códigos QR?</string>
     <string name="qr_popup_yes_button">Sí</string>
     <string name="qr_popup_no_button">No</string>
+    <string name="info_date_title">Fecha</string>
     <string name="info_date">27 de junio de 2015</string>
+    <string name="info_time_title">Hora</string>
     <string name="info_time">19:00</string>
+    <string name="info_place_title">Lugar</string>
     <string name="info_place">El Jardí de les Palmeres</string>
 
 </resources>

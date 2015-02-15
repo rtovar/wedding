@@ -8,14 +8,120 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/info_icon_margin"
+        android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_vertical_margin"
-            android:layout_marginRight="@dimen/activity_vertical_margin"
-            android:text=""/>
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <ImageView
+                android:layout_width="@dimen/info_icon_size"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/info_icon_margin"
+                android:layout_marginTop="6dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/icon_calendar"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TRTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_date_title"
+                    android:textColor="@color/theme_pink"
+                    android:textSize="@dimen/font_size_s"/>
+
+                <TRTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/activity_vertical_margin"
+                    android:text="@string/info_date"
+                    android:textSize="@dimen/font_size_l"
+                    android:textColor="@color/theme_purple"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <ImageView
+                android:layout_width="@dimen/info_icon_size"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/info_icon_margin"
+                android:layout_marginTop="6dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/icon_clock"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TRTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_time_title"
+                    android:textColor="@color/theme_pink"
+                    android:textSize="@dimen/font_size_s"/>
+
+                <TRTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/activity_vertical_margin"
+                    android:text="@string/info_time"
+                    android:textSize="@dimen/font_size_l"
+                    android:textColor="@color/theme_purple"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <ImageView
+                android:layout_width="@dimen/info_icon_size"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/info_icon_margin"
+                android:layout_marginTop="6dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/icon_location"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TRTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_place_title"
+                    android:textColor="@color/theme_pink"
+                    android:textSize="@dimen/font_size_s"/>
+
+                <TRTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/activity_vertical_margin"
+                    android:text="@string/info_place"
+                    android:textSize="@dimen/font_size_l"
+                    android:textColor="@color/theme_purple"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
