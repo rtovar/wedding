@@ -2,6 +2,7 @@ package com.tekro.invitation.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerTabStrip;
@@ -105,6 +106,11 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     public void pushMenuActivity() {
         Intent myIntent = new Intent(MainActivity.this, MenuActivity.class);
         MainActivity.this.startActivity(myIntent);
+    }
+
+    public void pushMapsIntent() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:<41.3153128>,<2.0659476>?q=<41.3153128>,<2.0659476>(El Jardí de les Palmeres)"));
+        startActivity(intent);
     }
 
 

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.tekro.invitation.R;
 import com.tekro.invitation.ui.fragment.GuestsFragment;
+import com.tekro.invitation.ui.fragment.InfoFragment;
 import com.tekro.invitation.ui.fragment.InvitationFragment;
 
 /**
@@ -22,7 +23,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
     private int[] tabsTitles = { R.string.title_section_invitation, R.string.title_section_guests, R.string.title_section_emplacement };
     private InvitationFragment invitationFragment;
     private GuestsFragment guestsFragment;
-    private Fragment infoFragment;
+    private InfoFragment infoFragment;
 
 
     //--------------------------------
@@ -88,7 +89,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
 
     private Fragment getInfoFragment() {
         if (infoFragment == null) {
-            infoFragment = new InvitationFragment();
+            infoFragment = new InfoFragment();
         }
 
         return infoFragment;

@@ -23,10 +23,12 @@
             android:name=".ui.activity.LoadingActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
+
         <activity
             android:name=".ui.activity.PhotoActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
+
         <activity
             android:name=".ui.activity.MenuActivity"
             android:windowSoftInputMode="adjustPan"
