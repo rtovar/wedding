@@ -3,3 +3,9 @@ invitation/.idea/misc.xml
 invitation/app/app.iml
 invitation/.idea/
 invitation/invitation.iml
+local.properties
+*.iml
+Tekro/.gradle
+Tekro/.idea
+Tekro/app/build
+Tekro/build

@@ -20,9 +20,6 @@ public interface APIService {
     @GET("/invite/{id}")
     public void getInvitationWithID(@Path("id") String id, Callback<TRInvitation> callback);
 
-    @POST("/invite")
-    public void publishInvitation(@Body TRInvitation invitation, Callback<TRInvitation> callback);
-
     @POST("/invite/{id}/{guest_id}")
     public void updateGuestWithID(@Path("id") String id, @Path("guest_id") String guestID, @Body TRGuest guest, Callback<TRInvitation> callback);
 
