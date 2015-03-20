@@ -126,6 +126,17 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/imageButtonMaps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map"
+        android:layout_above="@+id/buttonMaps"
+        android:layout_below="@+id/topLayout"
+        android:layout_marginTop="@dimen/margin_l"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"/>
+
     <Button
         android:id="@+id/buttonMaps"
         android:layout_width="match_parent"

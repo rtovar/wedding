@@ -75,7 +75,7 @@ public class ContentProvider {
         currentInvitation.sendInvitation = true;
         currentInvitation.invitationLanguage = language;
 
-        apiService.publishInvitation(currentInvitation, new Callback<TRInvitation>() {
+        apiService.updateInvitationWithID(currentInvitationID, currentInvitation, new Callback<TRInvitation>() {
             @Override
             public void success(TRInvitation invitation, Response response) {
                 currentInvitation = invitation;

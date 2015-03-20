@@ -26,4 +26,7 @@ public interface APIService {
     @POST("/invite/{id}/{guest_id}")
     public void updateGuestWithID(@Path("id") String id, @Path("guest_id") String guestID, @Body TRGuest guest, Callback<TRInvitation> callback);
 
+    @POST("/invite/{id}")
+    public void updateInvitationWithID(@Path("id") String id, @Body TRInvitation invitation, Callback<TRInvitation> callback);
+
 }

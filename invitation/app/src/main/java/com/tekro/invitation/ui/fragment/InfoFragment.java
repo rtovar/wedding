@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -29,6 +30,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
     private ImageView iconTimeImageView;
     private ImageView iconPlaceImageView;
     private Button mapsButton;
+    private ImageButton mapsImageButton;
 
 
     //--------------------------
@@ -42,6 +44,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
         findViews(view);
         setupIcons();
         mapsButton.setOnClickListener(this);
+        mapsImageButton.setOnClickListener(this);
 
         return view;
     }
@@ -51,6 +54,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
         iconTimeImageView = (ImageView)contentview.findViewById(R.id.iconTimeImageView);
         iconPlaceImageView = (ImageView)contentview.findViewById(R.id.iconPlaceImageView);
         mapsButton = (Button)contentview.findViewById(R.id.buttonMaps);
+        mapsImageButton = (ImageButton)contentview.findViewById(R.id.imageButtonMaps);
     }
 
     private void setupIcons() {
